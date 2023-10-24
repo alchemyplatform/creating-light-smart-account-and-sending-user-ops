@@ -1,0 +1,30 @@
+{
+  "name": "creating-light-smart-account-and-sending-user-ops",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alchemyplatform/creating-light-smart-account-and-sending-user-ops.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alchemyplatform/creating-light-smart-account-and-sending-user-ops/issues"
+  },
+  "homepage": "https://github.com/alchemyplatform/creating-light-smart-account-and-sending-user-ops#readme",
+  "dependencies": {
+    "@alchemy/aa-accounts": "^0.1.1",
+    "@alchemy/aa-alchemy": "^0.1.1",
+    "@alchemy/aa-core": "^0.1.1",
+    "dotenv": "^16.3.1",
+    "viem": "^1.16.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.8"
+  }
+}
