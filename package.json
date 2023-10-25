@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "execute:ts-core": "tsx -r dotenv/config src/ts/core/index.ts",
+    "execute:js-core": "tsx -r dotenv/config src/js/core/index.js",
+    "getCFaddress": "tsx -r dotenv/config scripts/getCounterfactual.ts",
+    "sendETH": "tsx -r dotenv/config scripts/sendEthToSCA.ts"
   },
   "repository": {
     "type": "git",
@@ -21,10 +24,15 @@
     "@alchemy/aa-accounts": "^0.1.1",
     "@alchemy/aa-alchemy": "^0.1.1",
     "@alchemy/aa-core": "^0.1.1",
+    "@alchemy/aa-ethers": "^0.1.1",
+    "alchemy-sdk": "^2.10.1",
     "dotenv": "^16.3.1",
+    "tsx": "^3.14.0",
     "viem": "^1.16.6"
   },
   "devDependencies": {
-    "@types/node": "^20.8.8"
+    "@types/node": "^20.8.8",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
   }
 }

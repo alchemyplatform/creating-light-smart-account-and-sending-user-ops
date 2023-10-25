@@ -1,16 +1,18 @@
 import * as dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
-import createSigner from "../helpers/createSigner";
+import createProvider from "../helpers/createProvider";
 dotenv.config();
 
 const FILENAME = "accountInfo.json";
 const __dirname = import.meta.url.split("/scripts")[0].split("file://")[1];
 
 async function main() {
-  const signer = await createSigner();
+  const provider = await createProvider();
 
-  const counterfactualAddress = await signer.account.getAddress();
+  const counterfactualAddress = await provider.getAddress();
+
+  console.log(counterfactualAddress);
 
   const filePath = path.join(__dirname, FILENAME);
   let data = {};
