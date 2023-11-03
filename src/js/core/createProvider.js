@@ -5,6 +5,7 @@ import {
 import { AlchemyProvider } from "@alchemy/aa-alchemy";
 import { LocalAccountSigner } from "@alchemy/aa-core";
 import * as dotenv from "dotenv";
+import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 dotenv.config();
 
@@ -19,9 +20,11 @@ export default async function createProvider() {
 
   const eoaSigner = LocalAccountSigner.privateKeyToAccountSigner(PRIVATE_KEY); // Create a signer for your EOA
 
+  const account = privateKeyToAccount(PRIV_KEY);
+
   // Create a provider with your EOA as the smart account owner, this provider is used to send user operations from your smart account and interact with the blockchain
   const provider = new AlchemyProvider({
-    apiKey: ALCHEMY_API_URL, // or replace with your Alchemy API key, you can get one at https://dashboard.alchemy.com/
+    rpcUrl: ALCHEMY_API_URL, // or replace with your Alchemy API key, you can get one at https://dashboard.alchemy.com/
     chain,
     // Entrypoint address, you can use a different entrypoint if needed, check out https://docs.alchemy.com/reference/eth-supportedentrypoints for all the supported entrypoints
     entryPointAddress: ENTRYPOINT_ADDRESS,

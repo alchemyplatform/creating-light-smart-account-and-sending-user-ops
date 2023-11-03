@@ -37,7 +37,6 @@ export default async function createProvider() {
         owner: eoaSigner,
         factoryAddress: getDefaultLightAccountFactory(rpcClient.chain), // Default address for Light Account on Sepolia, you can replace it with your own.
         rpcClient,
-        accountAddress: account.address,
       })
   );
 

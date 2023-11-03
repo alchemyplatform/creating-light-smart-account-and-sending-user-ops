@@ -3,9 +3,8 @@ import {
   getDefaultLightAccountFactory,
 } from "@alchemy/aa-accounts";
 import { AlchemyProvider } from "@alchemy/aa-alchemy";
-import { WalletClientSigner } from "@alchemy/aa-core";
+import { LocalAccountSigner, SmartAccountSigner } from "@alchemy/aa-core";
 import * as dotenv from "dotenv";
-import { createWalletClient, http } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 dotenv.config();
@@ -19,20 +18,10 @@ export default async function createProvider() {
   const chain = sepolia;
   const PRIVATE_KEY = PRIV_KEY; // Replace with the private key of your EOA that will be the owner of Light Account
 
-  const account = privateKeyToAccount(PRIVATE_KEY as `0x${string}`);
+  const eoaSigner: SmartAccountSigner =
+    LocalAccountSigner.privateKeyToAccountSigner(PRIVATE_KEY as `0x${string}`); // Create a signer for your EOA
 
-  // This client can now be used to do things like `eth_requestAccounts`
-  const client = createWalletClient({
-    account,
-    chain: sepolia,
-    transport: http(),
-  });
-
-  // this can now be used as an owner for a Smart Contract Account
-  const eoaSigner = new WalletClientSigner(
-    client,
-    "local" // signerType
-  );
+  const account = privateKeyToAccount(PRIV_KEY as `0x${string}`);
 
   // Create a provider with your EOA as the smart account owner, this provider is used to send user operations from your smart account and interact with the blockchain
   const provider = new AlchemyProvider({
@@ -50,8 +39,6 @@ export default async function createProvider() {
         rpcClient,
       })
   );
-
-  console.log(await provider.getAddress());
 
   return provider;
 }
